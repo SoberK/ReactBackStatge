@@ -3,6 +3,8 @@ import { Menu, Icon } from 'antd';
 import logo from './../../logo.svg';
 import menueConfig from "../../config/menueConfig";
 import './index.less'
+import {NavLink } from 'react-router-dom'
+
 const { SubMenu } = Menu;
 
 export default class extends React.Component{
@@ -17,11 +19,16 @@ export default class extends React.Component{
               return  (<SubMenu key={item.key} title={ <span>
                           <Icon type={item.icon} />
                           <span>{item.title}</span>
+
                         </span>}>
                     {this.renderMenue(item.children)}
                 </SubMenu>)
             }
-            return <Menu.Item key={item.key}>{item.title}</Menu.Item>
+            return <Menu.Item key={item.key}>
+                <NavLink to={item.key}>
+                {item.title}
+                </NavLink>
+            </Menu.Item>
 
         })
     }

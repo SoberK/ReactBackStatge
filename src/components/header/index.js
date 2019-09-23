@@ -7,13 +7,16 @@ export default class Header extends React.Component{
     state = {}
     componentWillMount() {
         setInterval(()=>{
-            const times = momentYMDHMSS(new Date)
+            const times = momentYMDHMSS(new Date())
             this.setState({times})
         },1000)
+        this.getWeatherData()
     }
 
     getWeatherData=()=>{
-        axios.jsonp('https://free-api.heweather.net/s6/weather/now?location=beijing&key=d972b14796b34e01b4b9c42fb762f452')
+        axios.post({url:'https://free-api.heweather.net/s6/weather/now?location=beijing&key=d972b14796b34e01b4b9c42fb762f452'}).then(res=>{
+            console.log(res)
+        })
     }
 
     render() {
